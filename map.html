@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no">
+<link rel="shortcut icon" href="img/favicon.ico"/>
+<link rel="bookmark" href="img/favicon.ico"/>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta property="og:title" content="">
+<meta property="og:description" content="">
+<meta property="og:url" content="">
+<meta property="og:image" content="">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- bootstrap -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+<!-- bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.6.0/dist/echarts.min.js"></script>
+<link rel="stylesheet" href="css/safe.css">
+<!-- google fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap" rel="stylesheet">
+<title></title>
+</head>
+<body>
+<div class="top">
+  <div class="logo_t">
+    <div class="logo"></div><span>智慧工安管理系統</span>台東某某橋工程
+  </div>
+  <div class="nav">
+    <a href="index.html"><span></span>資訊儀錶</a>
+    <a href="map.html" class="nav2 on"><span></span>地圖監控</a>
+    <a href="" class="nav3"><span></span>現場影像</a>
+    <a href="" class="nav4"><span></span>環境資訊</a>
+    <a href="info.html" class="nav5"><span></span>資料管理</a>
+  </div>
+</div>
+<div class="map_main">
+  <div class="map_left">
+    <div class="left_nav">
+      <div class="left_title">資訊顯示區</div>
+      <select id="op3">
+        <option value="">工區資訊面板</option>
+        <option value="">工區資訊面板2</option>
+        <option value="">工區資訊面板3</option>
+      </select>
+      <div class="bluezone">
+        <div class="blue_title">環境數值</div>
+        <div class="bz_c">
+          溫度：<span>35 ℃</span> 濕度：<span>75 %</span>
+          <i></i>
+          PM2.5：<span>1.8</span><br/>CO2：<span>450</span>ppm<br/>SO2：<span>100</span>ppb
+        </div>
+      </div>
+      <div class="bluezone">
+        <div class="blue_title">侷限空間</div>
+        <div class="bz_c">
+          人數：<span>20</span>人<br/>機具：<span>6</span>台
+        </div>
+      </div>
+      <div class="bluezone">
+        <div class="blue_title">高空作業</div>
+        <div class="bz_c">
+          人數：<span>20</span>人<br/>機具：<span>6</span>台
+        </div>
+      </div>
+    </div>
+    <div class="left_arr"></div>
+  </div>
+  <div class="map_right">
+    <div class="map"></div>
+  </div>
+</div>
+<div class="floatselect">
+  <select id="op2">
+    <option value="type1" data-img_src="img/dot_1.png">2025/12/12 10:45 各項訊息正常</option>
+    <option value="type2">2025/12/12 10:45 各項訊息正常</option>
+    <option value="type3">2025/12/12 10:45 各項訊息正常</option>
+  </select>
+</div>
+<script>
+function formatState (state) {
+    if (!state.id) {
+        return state.text;
+    }
+
+    var n = $(state.element).index() + 1;
+    var $state = $(
+        `<span class="floatselect-select"><img src="img/dot_${n}.png" /><span class="cc${n}">${state.text}</span></span>`
+    );
+    return $state;
+}
+// In your Javascript (external .js resource or <script> tag)
+$(document).ready(function() {
+    $('#op2').select2({
+        templateResult: formatState,
+        templateSelection: formatState,
+        minimumResultsForSearch: Infinity
+    });
+
+    $(".map_main .map_left" ).on("click", ".left_arr", function(event) {
+      var $this = $(this);
+      if ($this.hasClass("on")) {
+        var navWidth = $this.data("navWidth");
+        $(".map_main").animate({
+          left: "+=" + navWidth
+        }, 200, function() {
+          $(".map_main").css("width", "initial");
+        });
+      } else {
+        var $nav = $(event.delegateTarget).find(".left_nav");
+        $this.data("navWidth", $nav.outerWidth());
+        $(".map_main").animate({
+          left: "-=" + $nav.outerWidth()
+        }, 200, function() {
+          $(".map_main").css("width", "calc(100% + " + $nav.outerWidth() + "px");
+        });
+      }
+      $this.toggleClass("on");
+    })
+});
+</script>
+</body>
+</html>
