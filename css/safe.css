@@ -172,7 +172,7 @@ input.password{
 	position: fixed;
 	width: 100%;
 	height: 40px;
-	background: linear-gradient(to right,#98EAFF 30%, #DEFCFF 30.1%);
+	background: linear-gradient(to right,#98EAFF 40%, #DEFCFF 40.1%);
 	font-size: 12px;
 	text-align: left;
 	font-weight: 500;

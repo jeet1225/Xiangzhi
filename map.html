@@ -104,8 +104,13 @@ $(document).ready(function() {
         minimumResultsForSearch: Infinity
     });
 
-    $(".map_main .map_left" ).on("click", ".left_arr", function(event) {
-      var $this = $(this);
+    $(".map_main .map_left" ).on("click", function(event) {
+      var $target = $(event.target);
+      if ($target.closest(".left_nav").length > 0) {
+        return;
+      }
+
+      var $this = $(this).children(".left_arr");
       if ($this.hasClass("on")) {
         var navWidth = $this.data("navWidth");
         $(".map_main").animate({
