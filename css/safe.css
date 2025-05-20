@@ -205,7 +205,7 @@ input.password{
 	line-height: 40px;
 	position: relative;
 	color: #3AC1E3;
-	padding: 0 20px 0 5px;
+	padding: 0 20px 0 10px;
 	font-weight: 700;
 }
 .nav a::before{
@@ -223,7 +223,7 @@ input.password{
     margin-left: -2px;
 }
 .nav a.on::before{
-	background: #fff;
+	background: #FFFFCC;
 }
 .nav a span{
 	display: inline-block;
