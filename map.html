@@ -42,6 +42,7 @@
   </div>
 </div>
 <div class="map_main">
+  <div class="mapout"><div class="map"></div></div>
   <div class="map_left">
     <div class="left_nav">
       <div class="left_title">資訊顯示區</div>
@@ -72,9 +73,6 @@
       </div>
     </div>
     <div class="left_arr"></div>
-  </div>
-  <div class="map_right">
-    <div class="map"></div>
   </div>
 </div>
 <div class="floatselect">
@@ -110,22 +108,19 @@ $(document).ready(function() {
         return;
       }
 
-      var $this = $(this).children(".left_arr");
+      var $left = $(this);
+      var $this = $left.children(".left_arr");
       if ($this.hasClass("on")) {
         var navWidth = $this.data("navWidth");
-        $(".map_main").animate({
+        $left.animate({
           left: "+=" + navWidth
-        }, 200, function() {
-          $(".map_main").css("width", "initial");
-        });
+        }, 200);
       } else {
-        var $nav = $(event.delegateTarget).find(".left_nav");
+        var $nav = $left.find(".left_nav");
         $this.data("navWidth", $nav.outerWidth());
-        $(".map_main").animate({
+        $left.animate({
           left: "-=" + $nav.outerWidth()
-        }, 200, function() {
-          $(".map_main").css("width", "calc(100% + " + $nav.outerWidth() + "px");
-        });
+        }, 200);
       }
       $this.toggleClass("on");
     })
