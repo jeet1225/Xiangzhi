@@ -257,11 +257,11 @@ input.password{
 .mk1{
 	top: 0;
 	left: calc(50% - 210px);
-    position: relative;
+  position: relative;
 	width: 420px;
 	height: 270px;
 	background: url(../img/bg3.png) no-repeat center;
-    z-index: 2;
+  z-index: 2;
 }
 .mk2,.mk3,.mk4,.mk5{
 	width: 45%;
@@ -389,10 +389,21 @@ input.password{
 	position: absolute;
 	width: 130px;
 	height: 100px;
-	background: url(../img/weather1.png) no-repeat center;
 	background-size: contain;
 	right: 0;
 	bottom: 0;
+}
+.mk2c span.w1{
+	background: url(../img/weather1.png) no-repeat center;
+}
+.mk2c span.w2{
+	background: url(../img/weather2.png) no-repeat center;
+}
+.mk2c span.w3{
+	background: url(../img/weather3.png) no-repeat center;
+}
+.mk2c span.w4{
+	background: url(../img/weather4.png) no-repeat center;
 }
 .mk3c{
 	top: 10px;
